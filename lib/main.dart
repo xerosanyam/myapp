@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'constants/app_constants.dart';
 
 void main() {
   runApp(MyApp());
@@ -67,10 +68,12 @@ class MyHomePage extends StatefulWidget {
 
 /// This is the private State class that goes with MyStatefulWidget.
 class _MyHomePageState extends State<MyHomePage> {
-  String dropdownValue = 'One';
+  String dropdownValue = 'Vi';
 
   @override
   Widget build(BuildContext context) {
+    print('as $dropdownValue');
+
     return Scaffold(
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
@@ -78,28 +81,37 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         body: Center(
-            child: DropdownButton<String>(
-          value: dropdownValue,
-          icon: const Icon(Icons.arrow_downward),
-          iconSize: 24,
-          elevation: 16,
-          style: const TextStyle(color: Colors.deepPurple),
-          underline: Container(
-            height: 2,
-            color: Colors.deepPurpleAccent,
-          ),
-          onChanged: (String? newValue) {
-            setState(() {
-              dropdownValue = newValue!;
-            });
-          },
-          items: <String>['One', 'Two', 'Free', 'Four']
-              .map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
+            child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text('Select operator'),
+            DropdownButton<String>(
+              value: dropdownValue,
+              // icon: const Icon(Icons.arrow_downward),
+              iconSize: 24,
+              elevation: 16,
+              style: const TextStyle(color: Colors.deepPurple),
+              underline: Container(
+                height: 2,
+                color: Colors.deepPurpleAccent,
+              ),
+              onChanged: (String? newValue) {
+                setState(() {
+                  dropdownValue = newValue!;
+                });
+              },
+              items: operators.map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                    value: value,
+                    child: Center(
+                      child: Text(
+                        value,
+                        textAlign: TextAlign.center,
+                      ),
+                    ));
+              }).toList(),
+            )
+          ],
         )));
   }
 }

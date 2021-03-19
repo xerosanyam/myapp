@@ -1,1 +1,1 @@
-final operators = ['Jio', 'Airtel'];
+final operators = ['Jio', 'Airtel', 'Vi'];
